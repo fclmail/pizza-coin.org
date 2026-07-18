@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZA COIN - Make Money While You Eat Pizza</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #ffffff;
+            --neon-pink: #ff007f;
+            --neon-blue: #00f0ff;
+            --neon-orange: #ff6c00;
+            --card-bg: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Giant Neon Header */
+        h1.brand-title {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px var(--neon-pink),
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink);
+            animation: blink 3s infinite alternate;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--neon-orange);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255, 108, 0, 0.5);
+        }
+
+        .domain-link {
+            display: inline-block;
+            font-size: 1.3rem;
+            color: var(--neon-blue);
+            text-decoration: none;
+            margin-bottom: 40px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Focal Images Section */
+        .focal-section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .main-pizza-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 108, 0, 0.3);
+            border: 2px solid rgba(255, 108, 0, 0.2);
+        }
+
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .logo-row img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+        }
+
+        /* Countdown Timer */
+        .timer-box {
+            background: linear-gradient(135deg, #2b0018, #001a1c);
+            border: 2px solid var(--neon-pink);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+        }
+
+        .timer-title {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .timer-date {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-top: 5px;
+        }
+
+        /* Forms Layout */
+        .order-card {
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .step-block {
+            margin-bottom: 30px;
+        }
+
+        .step-block label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ccc;
+        }
+
+        .step-block label span {
+            color: var(--neon-orange);
+        }
+
+        /* Large Blank Fields */
+        .huge-input {
+            width: 100%;
+            padding: 22px;
+            font-size: 1.3rem;
+            background-color: #000;
+            border: 2px solid #444;
+            color: #fff;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .huge-input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Payment Icons Display */
+        .payment-notice {
+            margin-top: 35px;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+            border: 1px dashed #444;
+            text-align: center;
+        }
+
+        .payment-text {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .payment-methods {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* Value Proposition Info */
+        .promo-box {
+            background: rgba(255, 108, 0, 0.05);
+            border-left: 4px solid var(--neon-orange);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .promo-box h3 {
+            font-size: 1.4rem;
+            color: var(--neon-orange);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .promo-box p {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+
+        /* Table Styling */
+        .chart-section {
+            margin-bottom: 40px;
+        }
+
+        .chart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .chart-table th, .chart-table td {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .chart-table th {
+            background-color: #252525;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #333;
+        }
+
+        .chart-table tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .chart-table td {
+            border-bottom: 1px solid #222;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .chart-table td:first-child {
+            color: var(--neon-blue);
+        }
+
+        .chart-table td:last-child {
+            color: #00ff66;
+        }
+
+        /* What You Get Features */
+        .features-section {
+            background: #111;
+            border: 1px solid #222;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-status {
+            background: #00ff66;
+            color: #000;
+            padding: 2px 8px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-right: 15px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 1.15rem;
+            color: #eee;
+        }
+
+        .footer-note {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid #333;
+            width: 100%;
+        }
+
+        .highlight-multiplier {
+            color: #00ff66;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            h1.brand-title { font-size: 2.5rem; }
+            .tagline { font-size: 1.3rem; }
+            .huge-input { padding: 16px; font-size: 1.1rem; }
+            .chart-table th, .chart-table td { padding: 10px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <h1 class="brand-title">PIZZA COIN</h1>
+        <div class="tagline">Make Money While You Eat Pizza</div>
+        <a href="https://pizza-coin.org" class="domain-link">PIZZA-COIN.ORG</a>
+
+        <!-- Focal Visual Assets Section -->
+        <div class="focal-section">
+            <!-- Main Pizza Asset -->
+            <img class="main-pizza-img" src="pSaaavkRul7r7GOUqUyBPPlLCun16MyrJG-wXIHZg2pr7Zhpfp2mcaH8ixyFsALMDJBp9-Dx3GKvT8Jqh8Gia7bPUT3MAi4-aHZYI6Mfaxeys3h99WKZZmbOAdj3oMf5h6lUEeQXzsiPR3bJkPcq3heNXlwtvdGawLYf0o6VtPlSXnllfKQ2dG77E_D1oIqb.jpg" alt="Focal Pizza Coin Graphic">
+            
+            <!-- Contextual Project & Ecosystem Logos -->
+            <div class="logo-row">
+                <img src="images (15).png" alt="Pizza Pizza Logo">
+                <img src="images (14).png" alt="Polygon Network Logo">
+                <img src="download.webp" alt="Bitcoin Logo">
+                <img src="images (16).png" alt="Ethereum Logo">
+            </div>
+        </div>
+
+        <!-- Promotional Counter Window -->
+        <div class="timer-box">
+            <div class="timer-title">Limited Time Promotional Window</div>
+            <div class="timer-date">OFFER ENDS OCTOBER 31</div>
+        </div>
+
+        <!-- Dynamic User Allocation Forms -->
+        <div class="order-card">
+            <div class="section-title">IT'S EASY TO PARTICIPATE</div>
+            
+            <div class="step-block">
+                <label>1. ENTER YOUR EMAIL <span>(THIS IS WHERE YOU RECEIVE YOUR PIZZA GIFT CARD)</span></label>
+                <input type="email" class="huge-input" placeholder="ENTER YOUR EMAIL HERE . . .">
+            </div>
+
+            <div class="step-block">
+                <label>2. ENTER YOUR POLYGON ADDRESS <span>(THIS IS WHERE YOU RECEIVE YOUR PIZZA COIN)</span></label>
+                <input type="text" class="huge-input" placeholder="ENTER YOUR POLYGON 0x... ADDRESS HERE . . .">
+            </div>
+
+            <!-- Verification System Entry Portals -->
+            <div class="payment-notice">
+                <div class="payment-text">Pay Instantly at Gateway</div>
+                <div class="payment-methods">PAY WITH VISA, MASTERCARD, OR CRYPTO HERE</div>
+            </div>
+        </div>
+
+        <!-- Incentive Structure Framework -->
+        <div class="promo-box">
+            <h3>ALWAYS IN MULTIPLES OF 20</h3>
+            <p>For every 20 in Pizza Coin you buy, you get a 10 Pizza Pizza Gift Card!</p>
+            <p>And keep all of your valuable Pizza Coin. If the price goes up 10X, you make <span class="highlight-multiplier">10 TIMES YOUR MONEY</span>!</p>
+        </div>
+
+        <!-- Return Modeling Layout Grid -->
+        <div class="chart-section">
+            <div class="section-title" style="text-align: center;">EXAMPLE CHART</div>
+            <table class="chart-table">
+                <thead>
+                    <tr>
+                        <th>Pizza Coin Purchase</th>
+                        <th>Electronic Pizza Gift Card</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>20</td><td>10</td></tr>
+                    <tr><td>40</td><td>20</td></tr>
+                    <tr><td>100</td><td>50</td></tr>
+                    <tr><td>1,000</td><td>500</td></tr>
+                    <tr><td>20,000</td><td>10,000</td></tr>
+                    <tr><td>100,000</td><td>50,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Value Fulfillment Verification Panels -->
+        <div class="features-section">
+            <div class="section-title">WHAT YOU GET</div>
+            
+            <div class="feature-item">
+                <div class="feature-status">SUCCESS</div>
+                <div class="feature-text">PIZZACOIN delivered directly to your favorite crypto wallet.</div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-status">SUCCESS</div>
+                <div class="feature-text">You receive an electronic Pizza Pizza Gift Card for $10 or more, usable immediately!</div>
+            </div>
+        </div>
+
+        <!-- Transaction Threshold Notice -->
+        <div class="footer-note">
+            HAPPY TO TAKE YOUR ORDER OF 20 PIZZA COIN OR 20,000 PIZZA COIN!<br>
+            <span style="color: var(--neon-orange);">IF THE PRICE GOES UP 10X YOU MAKE 10 TIMES YOUR MONEY!</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
