@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIZZA COIN - Make Money While You Eat Pizza</title>
-    <style>
+<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>PIZZA COIN - Make Money While You Eat Pizza</title>    <style>
         :root {
             --bg-color: #0d0d0d;
             --text-color: #ffffff;
@@ -13,13 +7,11 @@
             --neon-orange: #ff6c00;
             --card-bg: #1a1a1a;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -30,14 +22,12 @@
             flex-direction: column;
             align-items: center;
         }
-
         .container {
             max-width: 800px;
             width: 100%;
             text-align: center;
             padding: 20px;
         }
-
         /* Giant Neon Header */
         h1.brand-title {
             font-size: 4rem;
@@ -53,12 +43,10 @@
                 0 0 40px var(--neon-pink);
             animation: blink 3s infinite alternate;
         }
-
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.95; }
         }
-
         .tagline {
             font-size: 1.8rem;
             font-weight: bold;
@@ -67,7 +55,6 @@
             margin-bottom: 30px;
             text-shadow: 0 0 10px rgba(255, 108, 0, 0.5);
         }
-
         .domain-link {
             display: inline-block;
             font-size: 1.3rem;
@@ -77,13 +64,11 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
-
         /* Focal Images Section */
         .focal-section {
             margin-bottom: 40px;
             position: relative;
         }
-
         .main-pizza-img {
             max-width: 100%;
             height: auto;
@@ -91,7 +76,6 @@
             box-shadow: 0 0 30px rgba(255, 108, 0, 0.3);
             border: 2px solid rgba(255, 108, 0, 0.2);
         }
-
         .logo-row {
             display: flex;
             justify-content: center;
@@ -103,14 +87,12 @@
             padding: 15px;
             border-radius: 12px;
         }
-
         .logo-row img {
             height: 45px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
         }
-
         /* Countdown Timer */
         .timer-box {
             background: linear-gradient(135deg, #2b0018, #001a1c);
@@ -120,14 +102,12 @@
             margin-bottom: 40px;
             box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
         }
-
         .timer-title {
             font-size: 1.4rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
         }
-
         .timer-date {
             font-size: 2.2rem;
             font-weight: 800;
@@ -135,7 +115,13 @@
             text-shadow: 0 0 10px var(--neon-blue);
             margin-top: 5px;
         }
-
+        .timer-ms {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--neon-orange);
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
         /* Forms Layout */
         .order-card {
             background-color: var(--card-bg);
@@ -146,7 +132,6 @@
             text-align: left;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
         .section-title {
             font-size: 1.8rem;
             color: #fff;
@@ -155,11 +140,9 @@
             border-bottom: 2px solid #333;
             padding-bottom: 10px;
         }
-
         .step-block {
             margin-bottom: 30px;
         }
-
         .step-block label {
             display: block;
             font-size: 1.1rem;
@@ -167,11 +150,9 @@
             margin-bottom: 12px;
             color: #ccc;
         }
-
         .step-block label span {
             color: var(--neon-orange);
         }
-
         /* Large Blank Fields */
         .huge-input {
             width: 100%;
@@ -184,12 +165,10 @@
             outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-
         .huge-input:focus {
             border-color: var(--neon-blue);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
-
         /* Payment Icons Display */
         .payment-notice {
             margin-top: 35px;
@@ -199,7 +178,6 @@
             border: 1px dashed #444;
             text-align: center;
         }
-
         .payment-text {
             font-size: 1.1rem;
             color: #aaa;
@@ -207,14 +185,13 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .payment-methods {
             font-weight: bold;
             color: #fff;
             font-size: 1.2rem;
             letter-spacing: 2px;
+            margin-bottom: 20px;
         }
-
         /* Value Proposition Info */
         .promo-box {
             background: rgba(255, 108, 0, 0.05);
@@ -224,25 +201,21 @@
             margin-bottom: 40px;
             text-align: left;
         }
-
         .promo-box h3 {
             font-size: 1.4rem;
             color: var(--neon-orange);
             margin-bottom: 10px;
             text-transform: uppercase;
         }
-
         .promo-box p {
             font-size: 1.1rem;
             color: #ddd;
             margin-bottom: 10px;
         }
-
         /* Table Styling */
         .chart-section {
             margin-bottom: 40px;
         }
-
         .chart-table {
             width: 100%;
             border-collapse: collapse;
@@ -251,12 +224,10 @@
             border-radius: 12px;
             overflow: hidden;
         }
-
         .chart-table th, .chart-table td {
             padding: 15px 20px;
             text-align: center;
         }
-
         .chart-table th {
             background-color: #252525;
             color: #fff;
@@ -266,25 +237,20 @@
             letter-spacing: 1px;
             border-bottom: 2px solid #333;
         }
-
         .chart-table tr:nth-child(even) {
             background-color: rgba(255,255,255,0.02);
         }
-
         .chart-table td {
             border-bottom: 1px solid #222;
             font-size: 1.2rem;
             font-weight: 600;
         }
-
         .chart-table td:first-child {
             color: var(--neon-blue);
         }
-
         .chart-table td:last-child {
             color: #00ff66;
         }
-
         /* What You Get Features */
         .features-section {
             background: #111;
@@ -294,17 +260,14 @@
             text-align: left;
             margin-bottom: 40px;
         }
-
         .feature-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
         }
-
         .feature-item:last-child {
             margin-bottom: 0;
         }
-
         .feature-status {
             background: #00ff66;
             color: #000;
@@ -317,12 +280,10 @@
             margin-top: 4px;
             flex-shrink: 0;
         }
-
         .feature-text {
             font-size: 1.15rem;
             color: #eee;
         }
-
         .footer-note {
             font-size: 1.3rem;
             font-weight: bold;
@@ -332,24 +293,18 @@
             border-top: 1px solid #333;
             width: 100%;
         }
-
         .highlight-multiplier {
             color: #00ff66;
             text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
         }
-
         @media (max-width: 600px) {
             h1.brand-title { font-size: 2.5rem; }
             .tagline { font-size: 1.3rem; }
             .huge-input { padding: 16px; font-size: 1.1rem; }
             .chart-table th, .chart-table td { padding: 10px; font-size: 1rem; }
         }
-    </style>
-</head>
-<body>
-
+    </style></head><body>
     <div class="container">
-        
         <!-- Header -->
         <h1 class="brand-title">PIZZA COIN</h1>
         <div class="tagline">Make Money While You Eat Pizza</div>
@@ -369,10 +324,11 @@
             </div>
         </div>
 
-        <!-- Promotional Counter Window -->
+        <!-- Promotional Counter Window with Milliseconds -->
         <div class="timer-box">
             <div class="timer-title">Limited Time Promotional Window</div>
             <div class="timer-date">OFFER ENDS OCTOBER 31</div>
+            <div class="timer-ms" id="countdown-timer">Loading milliseconds...</div>
         </div>
 
         <!-- Dynamic User Allocation Forms -->
@@ -383,16 +339,18 @@
                 <label>1. ENTER YOUR EMAIL <span>(THIS IS WHERE YOU RECEIVE YOUR PIZZA GIFT CARD)</span></label>
                 <input type="email" class="huge-input" placeholder="ENTER YOUR EMAIL HERE . . .">
             </div>
-
             <div class="step-block">
                 <label>2. ENTER YOUR POLYGON ADDRESS <span>(THIS IS WHERE YOU RECEIVE YOUR PIZZA COIN)</span></label>
                 <input type="text" class="huge-input" placeholder="ENTER YOUR POLYGON 0x... ADDRESS HERE . . .">
             </div>
 
-            <!-- Verification System Entry Portals -->
+            <!-- Verification System Entry Portals & PayPal Integration -->
             <div class="payment-notice">
                 <div class="payment-text">Pay Instantly at Gateway</div>
                 <div class="payment-methods">PAY WITH VISA, MASTERCARD, OR CRYPTO HERE</div>
+                
+                <!-- PayPal Integration Button Container -->
+                <div id="paypal-container-KWD2U8CG26NNL"></div>
             </div>
         </div>
 
@@ -432,7 +390,6 @@
                 <div class="feature-status">SUCCESS</div>
                 <div class="feature-text">PIZZACOIN delivered directly to your favorite crypto wallet.</div>
             </div>
-
             <div class="feature-item">
                 <div class="feature-status">SUCCESS</div>
                 <div class="feature-text">You receive an electronic Pizza Pizza Gift Card for $10 or more, usable immediately!</div>
@@ -444,8 +401,45 @@
             HAPPY TO TAKE YOUR ORDER OF 20 PIZZA COIN OR 20,000 PIZZA COIN!<br>
             <span style="color: var(--neon-orange);">IF THE PRICE GOES UP 10X YOU MAKE 10 TIMES YOUR MONEY!</span>
         </div>
-
     </div>
 
-</body>
-</html>
+    <!-- PayPal SDK Script -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAD6tp9GGPNolM5XDQ1JVr0cfhZv3Y9vT_TIPSwqsYPKuHiOb2z1soff0v9ykTk2_68MhGIFgx8rfhj00&components=hosted-buttons&disable-funding=venmo&currency=CAD"></script>
+    
+    <!-- PayPal Render Script -->
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "KWD2U8CG26NNL",
+      }).render("#paypal-container-KWD2U8CG26NNL");
+    </script>
+
+    <!-- Milliseconds Countdown Script -->
+    <script>
+      function updateCountdown() {
+        const targetDate = new Date("October 31, 2026 23:59:59").getTime();
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+          document.getElementById("countdown-timer").innerHTML = "PROMOTION EXPIRED";
+          return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        const milliseconds = Math.floor(difference % 1000);
+
+        // Format milliseconds to always be 3 digits (e.g., 045 instead of 45)
+        const formattedMs = String(milliseconds).padStart(3, '0');
+
+        document.getElementById("countdown-timer").innerHTML = 
+          `${days}d ${hours}h ${minutes}m ${seconds}s <span style="color:var(--neon-blue);">${formattedMs}ms</span>`;
+      }
+
+      // Update every 40 milliseconds for a smooth real-time millisecond countdown display
+      setInterval(updateCountdown, 40);
+      updateCountdown();
+    </script>
+</body></html>
