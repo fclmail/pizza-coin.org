@@ -313,7 +313,7 @@
         <!-- Focal Visual Assets Section -->
         <div class="focal-section">
             <!-- Main Pizza Asset -->
-            <img class="main-pizza-img" src="pSaaavkRul7r7GOUqUyBPPlLCun16MyrJG-wXIHZg2pr7Zhpfp2mcaH8ixyFsALMDJBp9-Dx3GKvT8Jqh8Gia7bPUT3MAi4-aHZYI6Mfaxeys3h99WKZZmbOAdj3oMf5h6lUEeQXzsiPR3bJkPcq3heNXlwtvdGawLYf0o6VtPlSXnllfKQ2dG77E_D1oIqb.jpg" alt="Focal Pizza Coin Graphic">
+            <img class="main-pizza-img" src="focal-pizza.jpg" alt="Focal Pizza Coin Graphic">
             
             <!-- Contextual Project & Ecosystem Logos -->
             <div class="logo-row">
@@ -431,14 +431,12 @@
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
         const milliseconds = Math.floor(difference % 1000);
 
-        // Format milliseconds to always be 3 digits (e.g., 045 instead of 45)
         const formattedMs = String(milliseconds).padStart(3, '0');
 
         document.getElementById("countdown-timer").innerHTML = 
           `${days}d ${hours}h ${minutes}m ${seconds}s <span style="color:var(--neon-blue);">${formattedMs}ms</span>`;
       }
 
-      // Update every 40 milliseconds for a smooth real-time millisecond countdown display
       setInterval(updateCountdown, 40);
       updateCountdown();
     </script>
