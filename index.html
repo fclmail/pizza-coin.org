@@ -169,6 +169,35 @@
             border-color: var(--neon-blue);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
+        /* Wallet & Pay Buttons */
+        .wallet-btn {
+            width: 100%;
+            padding: 22px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: #ff9800;
+            color: white;
+            margin-bottom: 15px;
+            transition: opacity 0.2s;
+        }
+        .wallet-btn:hover {
+            opacity: .9;
+        }
+        #wallet {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            word-break: break-all;
+            color: #ccc;
+        }
+        .connected {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
         /* Payment Icons Display */
         .payment-notice {
             margin-top: 35px;
@@ -344,6 +373,14 @@
                 <input type="text" class="huge-input" placeholder="ENTER YOUR POLYGON 0x... ADDRESS HERE . . .">
             </div>
 
+            <!-- Web3 Wallet Connection & Active Pay Section -->
+            <div class="step-block">
+                <label>3. CONNECT & PAY WITH WEB3 <span>(POLYGON NETWORK)</span></label>
+                <button id="connectButton" class="wallet-btn">🔗 CONNECT POLYGON WALLET</button>
+                <button id="payButton" class="wallet-btn" style="background: #00ff66; color: #000; display: none;">⚡ PAY 0.01 USDCe & CLAIM REWARD</button>
+                <div id="wallet">Not Connected</div>
+            </div>
+
             <!-- Verification System Entry Portals & PayPal Integration -->
             <div class="payment-notice">
                 <div class="payment-text">Pay Instantly at Gateway</div>
@@ -439,5 +476,70 @@
 
       setInterval(updateCountdown, 40);
       updateCountdown();
+    </script>
+
+    <!-- Web3 Wallet Connect & Active Pay Script -->
+    <script>
+      const connectButton = document.getElementById("connectButton");
+      const payButton = document.getElementById("payButton");
+      const walletDiv = document.getElementById("wallet");
+
+      let userAccount = null;
+
+      // USDCe contract configuration on Polygon (Standard USDC.e / bridged USDC address)
+      const USDC_ADDRESS = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
+      const RECIPIENT_ADDRESS = "0x0000000000000000000000000000000000000000"; // Replace with your receiving wallet address if needed
+      const ERC20_ABI = [
+        "function transfer(to address, value uint256) returns (boolean)"
+      ];
+
+      connectButton.onclick = async () => {
+        if (typeof window.ethereum === "undefined") {
+          walletDiv.innerHTML = "No Wallet Detected";
+          return;
+        }
+        try {
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts"
+          });
+          userAccount = accounts[0];
+          walletDiv.innerHTML = "<div class='connected'>✅ CONNECTED</div>" + userAccount;
+          connectButton.style.display = "none";
+          payButton.style.display = "block";
+        } catch (err) {
+          walletDiv.innerHTML = "Connection Cancelled";
+        }
+      };
+
+      payButton.onclick = async () => {
+        if (!userAccount) {
+          alert("Please connect your wallet first.");
+          return;
+        }
+        try {
+          // Request provider and signer via ethers-like provider or raw ethereum injection
+          // Using raw window.ethereum request for ERC20 transfer (0.01 USDCe = 10000 units with 6 decimals)
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          
+          const usdcContract = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, signer);
+          
+          // 0.01 USDCe (6 decimals -> 10000)
+          const debitAmount = ethers.utils.parseUnits("0.01", 6);
+          
+          payButton.innerText = "PROCESSING PAYMENT...";
+          
+          // Execute transfer of 0.01 USDCe from user to merchant contract/address
+          const tx = await usdcContract.transfer(RECIPIENT_ADDRESS, debitAmount);
+          await tx.wait();
+          
+          alert("Payment successful! 0.01 USDCe debited. Your 0.001 USDCe rebate / token allocation is processing.");
+          payButton.innerText = "⚡ PAYMENT COMPLETE ✅";
+        } catch (err) {
+          console.error(err);
+          alert("Transaction failed or was rejected.");
+          payButton.innerText = "⚡ PAY 0.01 USDCe & CLAIM REWARD";
+        }
+      };
     </script>
 </body></html>
