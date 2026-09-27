@@ -1,545 +1,701 @@
-<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>PIZZA COIN - Make Money While You Eat Pizza</title>    <style>
-        :root {
-            --bg-color: #0d0d0d;
-            --text-color: #ffffff;
-            --neon-pink: #ff007f;
-            --neon-blue: #00f0ff;
-            --neon-orange: #ff6c00;
-            --card-bg: #1a1a1a;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-        }
-        /* Giant Neon Header */
-        h1.brand-title {
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: #fff;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            text-shadow: 
-                0 0 5px #fff,
-                0 0 10px var(--neon-pink),
-                0 0 20px var(--neon-pink),
-                0 0 40px var(--neon-pink);
-            animation: blink 3s infinite alternate;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.95; }
-        }
-        .tagline {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--neon-orange);
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(255, 108, 0, 0.5);
-        }
-        .domain-link {
-            display: inline-block;
-            font-size: 1.3rem;
-            color: var(--neon-blue);
-            text-decoration: none;
-            margin-bottom: 40px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        /* Focal Images Section */
-        .focal-section {
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .main-pizza-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 108, 0, 0.3);
-            border: 2px solid rgba(255, 108, 0, 0.2);
-        }
-        .logo-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-            background: rgba(255,255,255,0.03);
-            padding: 15px;
-            border-radius: 12px;
-        }
-        .logo-row img {
-            height: 45px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
-        }
-        /* Countdown Timer */
-        .timer-box {
-            background: linear-gradient(135deg, #2b0018, #001a1c);
-            border: 2px solid var(--neon-pink);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
-        }
-        .timer-title {
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #fff;
-        }
-        .timer-date {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
-            margin-top: 5px;
-        }
-        .timer-ms {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--neon-orange);
-            margin-top: 8px;
-            letter-spacing: 1px;
-        }
-        /* Forms Layout */
-        .order-card {
-            background-color: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 20px;
-            padding: 40px 30px;
-            margin-bottom: 40px;
-            text-align: left;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .section-title {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-        .step-block {
-            margin-bottom: 30px;
-        }
-        .step-block label {
-            display: block;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #ccc;
-        }
-        .step-block label span {
-            color: var(--neon-orange);
-        }
-        /* Large Blank Fields */
-        .huge-input {
-            width: 100%;
-            padding: 22px;
-            font-size: 1.3rem;
-            background-color: #000;
-            border: 2px solid #444;
-            color: #fff;
-            border-radius: 12px;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .huge-input:focus {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-        /* Wallet & Pay Buttons */
-        .wallet-btn {
-            width: 100%;
-            padding: 22px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            background: #ff9800;
-            color: white;
-            margin-bottom: 15px;
-            transition: opacity 0.2s;
-        }
-        .wallet-btn:hover {
-            opacity: .9;
-        }
-        #wallet {
-            margin-top: 15px;
-            font-size: 1.1rem;
-            word-break: break-all;
-            color: #ccc;
-        }
-        .connected {
-            color: #00ff00;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        /* Payment Icons Display */
-        .payment-notice {
-            margin-top: 35px;
-            padding: 20px;
-            background: #111;
-            border-radius: 10px;
-            border: 1px dashed #444;
-            text-align: center;
-        }
-        .payment-text {
-            font-size: 1.1rem;
-            color: #aaa;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .payment-methods {
-            font-weight: bold;
-            color: #fff;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-        /* Value Proposition Info */
-        .promo-box {
-            background: rgba(255, 108, 0, 0.05);
-            border-left: 4px solid var(--neon-orange);
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
-            margin-bottom: 40px;
-            text-align: left;
-        }
-        .promo-box h3 {
-            font-size: 1.4rem;
-            color: var(--neon-orange);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .promo-box p {
-            font-size: 1.1rem;
-            color: #ddd;
-            margin-bottom: 10px;
-        }
-        /* Table Styling */
-        .chart-section {
-            margin-bottom: 40px;
-        }
-        .chart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .chart-table th, .chart-table td {
-            padding: 15px 20px;
-            text-align: center;
-        }
-        .chart-table th {
-            background-color: #252525;
-            color: #fff;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #333;
-        }
-        .chart-table tr:nth-child(even) {
-            background-color: rgba(255,255,255,0.02);
-        }
-        .chart-table td {
-            border-bottom: 1px solid #222;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        .chart-table td:first-child {
-            color: var(--neon-blue);
-        }
-        .chart-table td:last-child {
-            color: #00ff66;
-        }
-        /* What You Get Features */
-        .features-section {
-            background: #111;
-            border: 1px solid #222;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: left;
-            margin-bottom: 40px;
-        }
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        .feature-item:last-child {
-            margin-bottom: 0;
-        }
-        .feature-status {
-            background: #00ff66;
-            color: #000;
-            padding: 2px 8px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-            margin-right: 15px;
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-        .feature-text {
-            font-size: 1.15rem;
-            color: #eee;
-        }
-        .footer-note {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #fff;
-            margin-top: 20px;
-            padding: 20px;
-            border-top: 1px solid #333;
-            width: 100%;
-        }
-        .highlight-multiplier {
-            color: #00ff66;
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-        }
-        @media (max-width: 600px) {
-            h1.brand-title { font-size: 2.5rem; }
-            .tagline { font-size: 1.3rem; }
-            .huge-input { padding: 16px; font-size: 1.1rem; }
-            .chart-table th, .chart-table td { padding: 10px; font-size: 1rem; }
-        }
-    </style></head><body>
-    <div class="container">
-        <!-- Header -->
-        <h1 class="brand-title">PIZZA COIN</h1>
-        <div class="tagline">Make Money While You Eat Pizza</div>
-        <a href="https://pizza-coin.org" class="domain-link">PIZZA-COIN.ORG</a>
 
-        <!-- Focal Visual Assets Section -->
-        <div class="focal-section">
-            <!-- Main Pizza Asset -->
-            <img class="main-pizza-img" src="focal-pizza.png" alt="Focal Pizza Coin Graphic">
-            
-            <!-- Contextual Project & Ecosystem Logos -->
-            <div class="logo-row">
-                <img src="images (15).png" alt="Pizza Pizza Logo">
-                <img src="images (14).png" alt="Polygon Network Logo">
-                <img src="download.webp" alt="Bitcoin Logo">
-                <img src="images (16).png" alt="Ethereum Logo">
-            </div>
-        </div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title></title>
+<style>
+:root{--g:#39ff14;--b:#00aaff}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#020402;color:#fff}
+body{overflow-x:hidden}
 
-        <!-- Promotional Counter Window with Milliseconds -->
-        <div class="timer-box">
-            <div class="timer-title">Limited Time Promotional Window</div>
-            <div class="timer-date">OFFER ENDS OCTOBER 31</div>
-            <div class="timer-ms" id="countdown-timer">Loading milliseconds...</div>
-        </div>
+/* TOP SECTION WITH BACKGROUND IMAGE */
+.top-section {
+  position: relative;
+  width: 100%;
+  background: #020402;
+  padding-bottom: 20px;
+}
 
-        <!-- Dynamic User Allocation Forms -->
-        <div class="order-card">
-            <div class="section-title">IT'S EASY TO PARTICIPATE</div>
-            
-            <div class="step-block">
-                <label>1. ENTER YOUR EMAIL <span>(THIS IS WHERE YOU RECEIVE YOUR PIZZA GIFT CARD)</span></label>
-                <input type="email" class="huge-input" placeholder="ENTER YOUR EMAIL HERE . . .">
-            </div>
-            <div class="step-block">
-                <label>2. ENTER YOUR POLYGON ADDRESS <span>(THIS IS WHERE YOU RECEIVE YOUR PIZZA COIN)</span></label>
-                <input type="text" class="huge-input" placeholder="ENTER YOUR POLYGON 0x... ADDRESS HERE . . .">
-            </div>
+/* OVERLAY FOR TOP SECTION ONLY */
+.top-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(rgba(0,30,0,.32),rgba(0,0,0,.5));
+  mix-blend-mode: multiply;
+}
 
-            <!-- Web3 Wallet Connection & Active Pay Section -->
-            <div class="step-block">
-                <label>3. CONNECT & PAY WITH WEB3 <span>(POLYGON NETWORK)</span></label>
-                <button id="connectButton" class="wallet-btn">🔗 CONNECT POLYGON WALLET</button>
-                <button id="payButton" class="wallet-btn" style="background: #00ff66; color: #000; display: none;">⚡ PAY 0.01 USDCe & CLAIM REWARD</button>
-                <div id="wallet">Not Connected</div>
-            </div>
+.top-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 12px 10px;
+}
 
-            <!-- Verification System Entry Portals & PayPal Integration -->
-            <div class="payment-notice">
-                <div class="payment-text">Pay Instantly at Gateway</div>
-                <div class="payment-methods">PAY WITH VISA, MASTERCARD, OR CRYPTO HERE</div>
-                
-                <!-- PayPal Integration Button Container -->
-                <div id="paypal-container-KWD2U8CG26NNL"></div>
-            </div>
-        </div>
+.page{max-width:1200px;margin:auto;padding:10px 12px 45px;position:relative;z-index:2}
 
-        <!-- Incentive Structure Framework -->
-        <div class="promo-box">
-            <h3>ALWAYS IN MULTIPLES OF 20</h3>
-            <p>For every 20 in Pizza Coin you buy, you get a 10 Pizza Pizza Gift Card!</p>
-            <p>And keep all of your valuable Pizza Coin. If the price goes up 10X, you make <span class="highlight-multiplier">10 TIMES YOUR MONEY</span>!</p>
-        </div>
+/* 4. MADE TOP PICTURE THINNER TO EXPOSE EMOJIS */
+.hero{
+  display:block;
+  width:min(100%,880px);
+  margin:4px auto 14px;
+  border:4px solid var(--g);
+  border-radius:20px;
+  box-shadow:0 0 8px #fff,0 0 20px var(--g),0 0 45px var(--g)
+}
 
-        <!-- Return Modeling Layout Grid -->
-        <div class="chart-section">
-            <div class="section-title" style="text-align: center;">EXAMPLE CHART</div>
-            <table class="chart-table">
-                <thead>
-                    <tr>
-                        <th>Pizza Coin Purchase</th>
-                        <th>Electronic Pizza Gift Card</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>20</td><td>10</td></tr>
-                    <tr><td>40</td><td>20</td></tr>
-                    <tr><td>100</td><td>50</td></tr>
-                    <tr><td>1,000</td><td>500</td></tr>
-                    <tr><td>20,000</td><td>10,000</td></tr>
-                    <tr><td>100,000</td><td>50,000</td></tr>
-                </tbody>
-            </table>
-        </div>
+.hero-img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:15px
+}
 
-        <!-- Value Fulfillment Verification Panels -->
-        <div class="features-section">
-            <div class="section-title">WHAT YOU GET</div>
-            
-            <div class="feature-item">
-                <div class="feature-status">SUCCESS</div>
-                <div class="feature-text">PIZZACOIN delivered directly to your favorite crypto wallet.</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-status">SUCCESS</div>
-                <div class="feature-text">You receive an electronic Pizza Pizza Gift Card for $10 or more, usable immediately!</div>
-            </div>
-        </div>
+/* TOP RIGHT HAMBURGER */
+.menu-wrap{
+  position:absolute;
+  right:14px;
+  top:12px;
+  z-index:20
+}
 
-        <!-- Transaction Threshold Notice -->
-        <div class="footer-note">
-            HAPPY TO TAKE YOUR ORDER OF 20 PIZZA COIN OR 20,000 PIZZA COIN!<br>
-            <span style="color: var(--neon-orange);">IF THE PRICE GOES UP 10X YOU MAKE 10 TIMES YOUR MONEY!</span>
-        </div>
+.hamb{
+  width:58px;
+  height:58px;
+  border:3px solid var(--g);
+  border-radius:12px;
+  background:#000d;
+  color:var(--g);
+  font-size:34px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 0 8px #fff,0 0 22px var(--g);
+  text-shadow:0 0 10px var(--g)
+}
+
+.menu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:68px;
+  width:230px;
+  padding:10px;
+  background:#000f;
+  border:3px solid var(--g);
+  border-radius:16px;
+  box-shadow:0 0 10px #fff,0 0 30px var(--g)
+}
+
+.menu.open{
+  display:block
+}
+
+.menu a{
+  display:block;
+  padding:13px 12px;
+  margin:5px 0;
+  border:2px solid var(--g);
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
+  text-align:center;
+  font-size:20px;
+  font-weight:900;
+  text-shadow:0 0 8px var(--g);
+  background:#001500
+}
+
+/* BUY BUTTONS */
+.buy{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:22px;
+  margin:20px auto 0;
+  max-width:1120px;
+  padding:14px;
+  background:#000b;
+  border:2px solid #ffffff33;
+  border-radius:26px
+}
+
+.btn{
+  position:relative;
+  min-height:190px;
+  height:auto;
+  border:5px solid currentColor;
+  border-radius:28px;
+  background:#000c;
+  color:#fff;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  text-align:center;
+  font-weight:1000;
+  font-size:clamp(18px, 2.2vw, 36px);
+  line-height:1.05;
+  text-transform:uppercase;
+  transition:.12s;
+  padding:25px 12px;
+  box-sizing: border-box;
+}
+
+.btn-text {
+  display:block;
+  width:100%;
+  margin-bottom:15px;
+}
+
+.btn:hover{
+  transform:scale(1.025);
+  filter:brightness(1.3)
+}
+
+/* ABSOLUTE ZERO-BLUR CRISP NEON GREEN */
+.green{
+  color: #39ff14;
+  -webkit-text-stroke: 1.5px #000;
+  text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
+  box-shadow:0 0 8px #fff,0 0 24px var(--g),0 0 50px #39ff1499
+}
+
+/* ABSOLUTE ZERO-BLUR CRISP NEON BLUE */
+.blue{
+  color: #19c7ff;
+  -webkit-text-stroke: 1.5px #000;
+  text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
+  box-shadow:0 0 8px #fff,0 0 24px var(--b),0 0 50px #00aaff99
+}
+
+/* FLICKERING CLICK HAND */
+.hand{
+  position:absolute;
+  right:12px;
+  top:300px;
+  font-size:clamp(35px,5vw,65px);
+  animation:
+      flicker .22s steps(2,end) infinite,
+      bounce .42s ease-in-out infinite alternate;
+  filter:
+      drop-shadow(0 0 3px #fff)
+      drop-shadow(0 0 10px currentColor)
+      drop-shadow(0 0 20px currentColor)
+}
+
+/* 3. MADE PICTURES INSIDE FIRST 2 BUTTONS LARGER */
+.btn-icon {
+  position:static;
+  display:block;
+  width:clamp(110px, 20vw, 175px);
+  height:auto;
+  max-width:100%;
+  margin:12px auto 0;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+@keyframes flicker{
+  0%,100%{opacity:1}
+  20%{opacity:.35}
+  40%{opacity:1}
+  60%{opacity:.4}
+  80%{opacity:1}
+}
+
+@keyframes bounce{
+  from{transform:translateY(0) rotate(-8deg)}
+  to{transform:translateY(12px) rotate(5deg)}
+}
+
+.sub{
+  display:block;
+  margin-top:8px;
+  font-size:.4em;
+  letter-spacing:2px;
+  color:#ffffff;
+  -webkit-text-stroke: 0px;
+  text-shadow: 1.5px 1.5px 0px #000, -1.5px -1.5px 0px #000;
+}
+
+.notice{
+  margin:20px auto;
+  padding:14px;
+  max-width:900px;
+  text-align:center;
+  background:#000c;
+  border:2px solid var(--g);
+  border-radius:16px;
+  font-weight:900;
+  font-size:clamp(16px,2.5vw,26px);
+  box-shadow:0 0 20px #39ff1466
+}
+
+.foot{
+  text-align:center;
+  margin-top:20px;
+  font-weight:900;
+  text-shadow:0 0 10px var(--g)
+}
+
+/* FLOATING EMOJIS (BEHIND EVERYTHING) */
+.emoji-zone {
+  position: fixed; top: 0; bottom: 0; width: 13vw; min-width: 75px; max-width: 190px;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+
+.emoji-zone.left { left: 0; }
+.emoji-zone.right { right: 0; }
+
+.floating-emoji {
+  position: absolute; display: block; user-select: none; pointer-events: none;
+  will-change: transform; filter: drop-shadow(0 0 4px rgba(57, 255, 20, .35));
+}
+
+.left .emoji-1 { font-size: 70px; left: 8%; top: 10%; animation: bounceLeft1 6.5s ease-in-out infinite alternate; }
+.left .emoji-2 { font-size: 42px; left: 52%; top: 27%; animation: bounceLeft2 4.7s ease-in-out infinite alternate; }
+.left .emoji-3 { font-size: 92px; left: 12%; top: 47%; animation: bounceLeft3 7.2s ease-in-out infinite alternate; }
+.left .emoji-4 { font-size: 54px; left: 55%; top: 67%; animation: bounceLeft4 5.4s ease-in-out infinite alternate; }
+.left .emoji-5 { font-size: 32px; left: 20%; top: 84%; animation: bounceLeft5 3.9s ease-in-out infinite alternate; }
+
+.right .emoji-1 { font-size: 48px; right: 10%; top: 8%; animation: bounceRight1 5.2s ease-in-out infinite alternate; }
+.right .emoji-2 { font-size: 88px; right: 45%; top: 23%; animation: bounceRight2 7s ease-in-out infinite alternate; }
+.right .emoji-3 { font-size: 38px; right: 12%; top: 43%; animation: bounceRight3 4.2s ease-in-out infinite alternate; }
+.right .emoji-4 { font-size: 68px; right: 48%; top: 61%; animation: bounceRight4 6.1s ease-in-out infinite alternate; }
+.right .emoji-5 { font-size: 30px; right: 18%; top: 82%; animation: bounceRight5 3.7s ease-in-out infinite alternate; }
+
+@keyframes bounceLeft1 { 0% { transform: translate(0, 0) rotate(-12deg); } 100% { transform: translate(15px, 285px) rotate(-15deg); } }
+@keyframes bounceLeft2 { 0% { transform: translate(0, 0) rotate(10deg); } 100% { transform: translate(-20px, 205px) rotate(-10deg); } }
+@keyframes bounceLeft3 { 0% { transform: translate(0, 0) rotate(8deg); } 100% { transform: translate(5px, -235px) rotate(15deg); } }
+@keyframes bounceLeft4 { 0% { transform: translate(0, 0) rotate(-8deg); } 100% { transform: translate(-10px, 175px) rotate(10deg); } }
+@keyframes bounceLeft5 { 0% { transform: translate(0, 0); } 100% { transform: translate(-20px, -110px) rotate(-15deg); } }
+
+@keyframes bounceRight1 { 0% { transform: translate(0, 0) rotate(12deg); } 100% { transform: translate(-15px, 275px) rotate(12deg); } }
+@keyframes bounceRight2 { 0% { transform: translate(0, 0) rotate(-10deg); } 100% { transform: translate(20px, 210px) rotate(15deg); } }
+@keyframes bounceRight3 { 0% { transform: translate(0, 0) rotate(8deg); } 100% { transform: translate(10px, -225px) rotate(18deg); } }
+@keyframes bounceRight4 { 0% { transform: translate(0, 0) rotate(-12deg); } 100% { transform: translate(15px, 180px) rotate(10deg); } }
+@keyframes bounceRight5 { 0% { transform: translate(0, 0); } 100% { transform: translate(20px, -115px) rotate(15deg); } }
+
+/* 3RD BUTTON CAROUSEL FRAME STYLES */
+.btn-slider-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  height: 150px;
+  background: #000;
+  border: 2px solid var(--g);
+  border-radius: 12px;
+  margin: 10px auto 0;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  user-select: none;
+}
+
+.btn-slider-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-slider-wrapper img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* CAROUSEL ARROWS */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 20, 0, 0.8);
+  color: var(--g);
+  border: 1px solid var(--g);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 0 6px var(--g);
+  transition: 0.1s;
+}
+
+.slider-arrow:hover {
+  background: var(--g);
+  color: #000;
+}
+
+.slider-arrow.prev { left: 5px; }
+.slider-arrow.next { right: 5px; }
+
+/* 1. ANDROID OPTIMIZED PROFIT DEMO GRAPHIC & COUNTER (MADE LARGER) */
+.btn-chart-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
+  background: #000500;
+  border: 2px dashed var(--g);
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: inset 0 0 12px rgba(57, 255, 20, 0.9);
+  margin: 10px auto 0;
+  box-sizing: border-box;
+}
+
+.btn-chart-wrapper svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.grid-line {
+  stroke: var(--g);
+  stroke-dasharray: 3 3;
+  stroke-width: 1;
+  opacity: 0.25;
+}
+
+.axis {
+  stroke: var(--g);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 3px var(--g));
+}
+
+.axis-text {
+  fill: #39ff14;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 11px;
+  text-shadow: 1px 1px 0px #000;
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--g);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--g));
+}
+
+/* CROSS-BROWSER ANDROID MOTION PATH */
+.pizza-tracker {
+  font-size: 20px;
+  -webkit-offset-path: path("M 55 250 Q 140 230 180 150 T 285 35");
+  offset-path: path("M 55 250 Q 140 230 180 150 T 285 35");
+  -webkit-animation: movePizza 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: movePizza 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@-webkit-keyframes movePizza {
+  0% { -webkit-offset-distance: 0%; offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { -webkit-offset-distance: 100%; offset-distance: 100%; opacity: 0; }
+}
+
+@keyframes movePizza {
+  0% { -webkit-offset-distance: 0%; offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { -webkit-offset-distance: 100%; offset-distance: 100%; opacity: 0; }
+}
+
+.btn-profit-display {
+  width: 100%;
+  max-width: 270px;
+  background: #002000;
+  border: 2px solid var(--g);
+  border-radius: 10px;
+  padding: 8px 4px;
+  margin-top: 8px;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.9);
+  box-sizing: border-box;
+}
+
+/* 2. "YOUR PROFIT BALANCE" LARGER SOLID NEON GREEN FONT */
+.btn-profit-label {
+  font-size: clamp(13px, 1.6vw, 15px);
+  font-weight: 1000;
+  letter-spacing: 1px;
+  color: #39ff14;
+  -webkit-text-stroke: 0.5px #000;
+  text-shadow: 0 0 8px #39ff14;
+  margin-bottom: 3px;
+}
+
+.btn-counter-box {
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 1000;
+  color: #39ff14;
+  -webkit-text-stroke: 1px #000;
+  text-shadow: 2px 2px 0px #000, -1px -1px 0px #000;
+}
+
+@media(max-width:760px){
+ .buy {
+    grid-template-columns:1fr;
+    padding:10px
+ }
+ .btn {
+    min-height:auto;
+    border-radius:22px;
+    padding:20px 14px;
+ }
+ .hamb {
+    width:50px;
+    height:50px;
+    font-size:29px
+ }
+ .menu {
+    top:58px
+ }
+}
+
+@media (max-width: 900px) {  .emoji-zone { width: 8vw; min-width: 45px; opacity: .55; }  }
+
+</style>
+</head>
+<body>
+
+<!-- EMOJI ZONES LAYERED STRICTLY BEHIND (z-index: 0) -->
+<div class="emoji-zone left" aria-hidden="true">
+  <span class="floating-emoji emoji-1">🍕</span> 
+  <span class="floating-emoji emoji-2">😃</span> 
+  <span class="floating-emoji emoji-3">💵</span> 
+  <span class="floating-emoji emoji-4">🪙</span> 
+  <span class="floating-emoji emoji-5">🙂</span>
+</div>
+
+<div class="emoji-zone right" aria-hidden="true">
+  <span class="floating-emoji emoji-1">🙂</span> 
+  <span class="floating-emoji emoji-2">🍕</span> 
+  <span class="floating-emoji emoji-3">🪙</span> 
+  <span class="floating-emoji emoji-4">😃</span> 
+  <span class="floating-emoji emoji-5">💵</span>
+</div>
+
+<header class="top-section">
+  <div class="top-content">
+    <div class="menu-wrap">
+      <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="menu" id="menu">
+        <a href="https://www.pizza-coin.org/">Option 1</a>
+        <a href="https://www.pizza-coin.org/">Option 2</a>
+        <a href="https://www.pizza-coin.org/">Option 3</a>
+        <a href="https://www.pizza-coin.org/">Option 4</a>
+        <a href="https://www.pizza-coin.org/">Option 5</a>
+        <a href="https://www.pizza-coin.org/">Option 6</a>
+        <a href="https://www.pizza-coin.org/">Option 7</a>
+      </nav>
     </div>
+    <div class="hero">
+      <img class="hero-img" src="pzzctitle.png" alt="Pizza Coin Title">
+    </div>
+  </div>
+</header>
 
-    <!-- PayPal SDK Script -->
-    <script src="https://www.paypal.com/sdk/js?client-id=BAAD6tp9GGPNolM5XDQ1JVr0cfhZv3Y9vT_TIPSwqsYPKuHiOb2z1soff0v9ykTk2_68MhGIFgx8rfhj00&components=hosted-buttons&disable-funding=venmo&currency=CAD"></script>
-    
-    <!-- PayPal Render Script -->
-    <script>
-      paypal.HostedButtons({
-        hostedButtonId: "KWD2U8CG26NNL",
-      }).render("#paypal-container-KWD2U8CG26NNL");
-    </script>
+<div class="page">
+  <section class="buy">
+    <a class="btn green" href="https://august2024xx-cpu.github.io/ppal/">
+      <span class="hand">👆</span>
+      <span class="btn-text">
+        PROFIT BUY PIZZA COIN<br>WITH VISA, MC OR PAYPAL
+        <span class="sub">CLICK HERE TO BUY</span>
+      </span>
+      <img src="ppal2.png" alt="PayPal / Card Icon" class="btn-icon">
+    </a>
 
-    <!-- Milliseconds Countdown Script -->
-    <script>
-      function updateCountdown() {
-        const targetDate = new Date("October 31, 2026 23:59:59").getTime();
-        const now = new Date().getTime();
-        const difference = targetDate - now;
+    <a class="btn blue" href="https://august2024xx-cpu.github.io/anycryptopay2/">
+      <span class="hand">👆</span>
+      <span class="btn-text">
+        PROFIT BUY PIZZA COIN<br>WITH ANY CRYPTO HERE
+        <span class="sub">CLICK HERE TO BUY</span>
+      </span>
+      <img src="crypto2.png" alt="Crypto Icon" class="btn-icon">
+    </a>
 
-        if (difference <= 0) {
-          document.getElementById("countdown-timer").innerHTML = "PROMOTION EXPIRED";
-          return;
-        }
+    <!-- SELF-CONTAINED 3RD BUTTON WITH CAROUSEL, NEON GREEN BORDER AND ANIMATED PROFIT DEMO -->
+    <a class="btn green" href="https://www.pizza-coin.org/">
+      <span class="hand">👆</span>
+      <span class="btn-text">
+        PROFIT WITH<br>PIZZA COIN
+        <span class="sub">SEE PROFIT GROW</span>
+      </span>
 
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        const milliseconds = Math.floor(difference % 1000);
+      <!-- SWIPEABLE PICTURE CAROUSEL -->
+      <div class="btn-slider-wrapper" id="btnSlider">
+        <div class="slider-arrow prev" id="slidePrev" onclick="event.preventDefault(); event.stopPropagation(); moveSlide(-1);">&#10094;</div>
+        <div class="slider-arrow next" id="slideNext" onclick="event.preventDefault(); event.stopPropagation(); moveSlide(1);">&#10095;</div>
+        
+        <img src="pic1.png" class="active" alt="Picture 1">
+        <img src="pic2.png" alt="Picture 2">
+        <img src="pic3.png" alt="Picture 3">
+        <img src="pic4.png" alt="Picture 4">
+      </div>
 
-        const formattedMs = String(milliseconds).padStart(3, '0');
+      <!-- ANIMATED CHART DEMO -->
+      <div class="btn-chart-wrapper">
+        <svg viewBox="0 0 300 280">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#39ff14" filter="drop-shadow(0 0 2px #39ff14)" />
+            </marker>
+          </defs>
+          <line x1="55" y1="35" x2="290" y2="35" class="grid-line" />
+          <line x1="55" y1="105" x2="290" y2="105" class="grid-line" />
+          <line x1="55" y1="175" x2="290" y2="175" class="grid-line" />
+          <line x1="55" y1="245" x2="290" y2="245" class="grid-line" />
+          <text x="5" y="38" class="axis-text">$4,000</text>
+          <text x="5" y="108" class="axis-text">$3,000</text>
+          <text x="5" y="178" class="axis-text">$1,500</text>
+          <text x="5" y="248" class="axis-text">$1</text>
+          <polyline points="55,15 55,255 295,255" class="axis" marker-end="url(#arrow)" />
+          <path d="M 55 250 Q 140 230 180 150 T 285 35" class="chart-line" marker-end="url(#arrow)" />
+          <g class="pizza-tracker">
+            <text x="-13" y="8">🍕</text>
+          </g>
+        </svg>
+      </div>
 
-        document.getElementById("countdown-timer").innerHTML = 
-          `${days}d ${hours}h ${minutes}m ${seconds}s <span style="color:var(--neon-blue);">${formattedMs}ms</span>`;
-      }
+      <!-- PROFIT COUNTER -->
+      <div class="btn-profit-display">
+        <div class="btn-profit-label">🍕 YOUR PROFIT BALANCE 🍕</div>
+        <div class="btn-counter-box">
+          $<span id="profitCounter">1</span>
+        </div>
+      </div>
+    </a>
+  </section>
 
-      setInterval(updateCountdown, 40);
-      updateCountdown();
-    </script>
+  <div class="notice">
+    🍕 ©️PIZZA COIN CRYPTO 🍕<br><br>
+    FOR PEOPLE WHO LIKE<br>
+    MORE CRYPTO 🪙 ✅<br>
+    MORE CASH   💵 ✅<br>
+    MORE PIZZA   🍕 ✅<br><br>
+    ALL ARE WELCOME 😀 ✅<br>
+  </div>
 
-    <!-- Web3 Wallet Connect & Active Pay Script -->
-    <script>
-      const connectButton = document.getElementById("connectButton");
-      const payButton = document.getElementById("payButton");
-      const walletDiv = document.getElementById("wallet");
+  <div class="foot">
+    WWW.PIZZA-COIN.ORG
+  </div>
+</div>
 
-      let userAccount = null;
+<script>
+const h = document.getElementById("hamb");
+const m = document.getElementById("menu");
 
-      // USDCe contract configuration on Polygon (Standard USDC.e / bridged USDC address)
-      const USDC_ADDRESS = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
-      const RECIPIENT_ADDRESS = "0x0000000000000000000000000000000000000000"; // Replace with your receiving wallet address if needed
-      const ERC20_ABI = [
-        "function transfer(to address, value uint256) returns (boolean)"
-      ];
+h.onclick = function(e){
+  e.stopPropagation();
+  let open = m.classList.toggle("open");
+  h.setAttribute("aria-expanded", open);
+};
 
-      connectButton.onclick = async () => {
-        if (typeof window.ethereum === "undefined") {
-          walletDiv.innerHTML = "No Wallet Detected";
-          return;
-        }
-        try {
-          const accounts = await window.ethereum.request({
-            method: "eth_requestAccounts"
-          });
-          userAccount = accounts[0];
-          walletDiv.innerHTML = "<div class='connected'>✅ CONNECTED</div>" + userAccount;
-          connectButton.style.display = "none";
-          payButton.style.display = "block";
-        } catch (err) {
-          walletDiv.innerHTML = "Connection Cancelled";
-        }
-      };
+document.onclick = function(e){
+  if(!e.target.closest(".menu-wrap")){
+    m.classList.remove("open");
+    h.setAttribute("aria-expanded", "false");
+  }
+};
 
-      payButton.onclick = async () => {
-        if (!userAccount) {
-          alert("Please connect your wallet first.");
-          return;
-        }
-        try {
-          // Request provider and signer via ethers-like provider or raw ethereum injection
-          // Using raw window.ethereum request for ERC20 transfer (0.01 USDCe = 10000 units with 6 decimals)
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          const signer = provider.getSigner();
-          
-          const usdcContract = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, signer);
-          
-          // 0.01 USDCe (6 decimals -> 10000)
-          const debitAmount = ethers.utils.parseUnits("0.01", 6);
-          
-          payButton.innerText = "PROCESSING PAYMENT...";
-          
-          // Execute transfer of 0.01 USDCe from user to merchant contract/address
-          const tx = await usdcContract.transfer(RECIPIENT_ADDRESS, debitAmount);
-          await tx.wait();
-          
-          alert("Payment successful! 0.01 USDCe debited. Your 0.001 USDCe rebate / token allocation is processing.");
-          payButton.innerText = "⚡ PAYMENT COMPLETE ✅";
-        } catch (err) {
-          console.error(err);
-          alert("Transaction failed or was rejected.");
-          payButton.innerText = "⚡ PAY 0.01 USDCe & CLAIM REWARD";
-        }
-      };
-    </script>
-</body></html>
+/* PROFIT COUNTER SCRIPT */
+const counterEl = document.getElementById('profitCounter');
+const startVal = 1;
+const endVal = 4000;
+const duration = 4000;
+let startTime = null;
+
+function updateCounter(timestamp) {
+  if (!startTime) startTime = timestamp;
+  const progress = Math.min((timestamp - startTime) / duration, 1);
+  const currentVal = Math.floor(startVal + Math.pow(progress, 2.5) * (endVal - startVal));
+  
+  if (counterEl) {
+    counterEl.textContent = currentVal.toLocaleString();
+  }
+  
+  if (progress < 1) {
+    requestAnimationFrame(updateCounter);
+  } else {
+    setTimeout(() => {
+      startTime = null;
+      requestAnimationFrame(updateCounter);
+    }, 50);
+  }
+}
+requestAnimationFrame(updateCounter);
+
+/* 3RD BUTTON CAROUSEL LOGIC */
+let currentSlide = 0;
+const slides = document.querySelectorAll('#btnSlider img');
+const totalSlides = slides.length;
+let slideInterval;
+
+function showSlide(index) {
+  slides.forEach((img, i) => {
+    img.classList.toggle('active', i === index);
+  });
+}
+
+function moveSlide(direction) {
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  showSlide(currentSlide);
+  resetTimer();
+}
+
+function startAutoSlide() {
+  slideInterval = setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }, 10000);
+}
+
+function resetTimer() {
+  clearInterval(slideInterval);
+  startAutoSlide();
+}
+
+// SWIPE GESTURES FOR MOBILE/ANDROID
+const sliderEl = document.getElementById('btnSlider');
+let touchStartX = 0;
+let touchEndX = 0;
+
+if (sliderEl) {
+  sliderEl.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  sliderEl.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 30) {
+      moveSlide(1); 
+    } else if (touchEndX > touchStartX + 30) {
+      moveSlide(-1);
+    }
+  }, { passive: true });
+}
+
+// INITIALIZE SLIDER
+showSlide(currentSlide);
+startAutoSlide();
+</script>
+</body>
+</html>
